@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.UserMapper">
+  <resultMap id="BaseResultMap" type="com.example.demo.entity.User">
+    <id column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="user_email" property="userEmail" jdbcType="VARCHAR" />
+    <result column="user_pwd" property="userPwd" jdbcType="VARCHAR" />
+    <result column="register_code" property="registerCode" jdbcType="VARCHAR" />
+    <result column="validate_status" property="validateStatus" jdbcType="VARCHAR" />
+    <result column="role" property="role" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    user_id,user_name,user_email,user_pwd,register_code,validate_status,role
+  </sql>
+  
+  <!-- <select id="selectBlog" resultType="Blog">
+    select * from Blog where id = #{id}
+  </select> -->
+  
+  <select id="getList" resultMap="BaseResultMap">
+    select
+      <include refid="Base_Column_List" />
+      from t_user
+  </select>
+  
+  <select id="getUserByName" resultMap="BaseResultMap">
+    select
+      <include refid="Base_Column_List" />
+      from t_user
+      where user_name=#{name}
+  </select>
+</mapper>
